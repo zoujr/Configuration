@@ -13,6 +13,8 @@ set autoindent
 " set smartindent
 
 set hlsearch
+hi Search ctermbg=LightYellow
+hi Search ctermfg=Red
 
 set ts=4
 set shiftwidth=4
