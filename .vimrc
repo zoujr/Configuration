@@ -1,4 +1,6 @@
-:let autoPairs = 1
+:let autoPairs = 0
+
+let mapleader=","
 
 set nu
 
@@ -8,7 +10,7 @@ syntax on
 
 set autoread
 
-set cindent
+" set cindent
 set autoindent
 " set smartindent
 
@@ -16,11 +18,14 @@ set hlsearch
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Red
 
-set ts=4
-set shiftwidth=4
+set ts=2
+set shiftwidth=2
 set expandtab
 "set noexpandtab
 set mouse=a
+
+"Copy and paste between terminala
+set clipboard=unnamed
 
 :if autoPairs
     inoremap ( ()<ESC>i
@@ -41,3 +46,8 @@ set mouse=a
     inoremap ] <ESC>:call RemoveNextDoubleChar(']')<CR>a
     inoremap } <ESC>:call RemoveNextDoubleChar('}')<CR>a
 :endif
+
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+set rtp+=~/.fzf
+nnoremap <C-p> :FZF<CR>
