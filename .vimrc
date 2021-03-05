@@ -1,4 +1,6 @@
-:let autoPairs = 1
+:let autoPairs = 0
+
+let mapleader=","
 
 set nu
 
@@ -8,7 +10,7 @@ syntax on
 
 set autoread
 
-set cindent
+" set cindent
 set autoindent
 " set smartindent
 
@@ -16,11 +18,16 @@ set hlsearch
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Red
 
-set ts=4
+set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+" set softtabstop=0
 set expandtab
-"set noexpandtab
+" set noexpandtab
 set mouse=a
+
+"Copy and paste between terminala
+set clipboard=unnamed
 
 :if autoPairs
     inoremap ( ()<ESC>i
