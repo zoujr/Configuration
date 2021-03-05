@@ -18,10 +18,12 @@ set hlsearch
 hi Search ctermbg=LightYellow
 hi Search ctermfg=Red
 
-set ts=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+" set softtabstop=0
 set expandtab
-"set noexpandtab
+" set noexpandtab
 set mouse=a
 
 "Copy and paste between terminala
