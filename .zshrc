@@ -1,25 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/home/zjr/.cargo/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/zjr/.oh-my-zsh"
-# export DISPLAY=localhost:10.0
+export DISPLAY=:0
 
-export Synopsys_HOME=/opt/synopsys
-export SNPSLMD_LICENSE_FILE=27000@xiangshan-00
-export SYNOPSYS_LICENSE_FILE=$Synopsys_HOME/License/Synopsys.dat
-export VCS_HOME=$Synopsys_HOME/vcs/O-2018.09-SP2
-export PATH=$VCS_HOME/bin:$PATH
-export PATH=/opt/synopsys/scl-2018-06/linux64/bin:$PATH
-
-export XSGIT=git@github.com:RISCVERS/XiangShan.git
-export NEMUGIT=git@github.com:RISCVERS/NEMU.git
-export AMGIT=git@github.com:RISCVERS/nexus-am.git
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="ys"
+# ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -79,7 +71,17 @@ ZSH_THEME="ys"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting autojump zsh-256color)
+plugins=(
+	git
+    z
+	zsh-syntax-highlighting
+        zsh-autosuggestions
+
+)
+
+[[ -s /home/zjr/.autojump/etc/profile.d/autojump.sh ]] && source /home/zjr/.autojump/etc/profile.d/autojump.sh
+
+        autoload -U compinit && compinit -u
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,9 +91,6 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-export NEMU_HOME="/home/zjr/NEMU"
-export AM_HOME="/home/zjr/nexus-am"
-export NOOP_HOME="/home/zjr/XiangShan"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -111,7 +110,15 @@ export NOOP_HOME="/home/zjr/XiangShan"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vimf="vim \$(fzf -m)"
+alias open="wslview"
 
+# ssh-agent autorun
+eval $(ssh-agent -s) > /dev/null
+trap 'test -n "$SSH_AGENT_PID" && eval `/usr/bin/ssh-agent -k` > /dev/null' 0
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ssh-agent autorun
 eval $(ssh-agent -s) > /dev/null
@@ -128,34 +135,34 @@ PS1o="$PS1"
 halfpage=$((LINES/2))
 
 # construct parameter to go down/up $halfpage lines via termcap
-	halfpage_down=""
-	for i in {1..$halfpage}; do
-	halfpage_down="$halfpage_down$terminfo[cud1]"
-	done
+    halfpage_down=""
+    for i in {1..$halfpage}; do
+    halfpage_down="$halfpage_down$terminfo[cud1]"
+    done
 
-	halfpage_up=""
-	for i in {1..$halfpage}; do
-	halfpage_up="$halfpage_up$terminfo[cuu1]"
-	done
+    halfpage_up=""
+    for i in {1..$halfpage}; do
+    halfpage_up="$halfpage_up$terminfo[cuu1]"
+    done
 
 # define functions
-	function prompt_middle() {
+    function prompt_middle() {
 # print $halfpage_down
-		PS1="%{${halfpage_down}${halfpage_up}%}$PS1o"
-	}
+        PS1="%{${halfpage_down}${halfpage_up}%}$PS1o"
+    }   
 
 function prompt_restore() {
-	PS1="$PS1o"
+    PS1="$PS1o"
 }
 
 magic-enter () {
-	if [[ -z $BUFFER ]]
-		then
-			print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
-			zle reset-prompt
-	else
-		zle accept-line
-			fi
+    if [[ -z $BUFFER ]]
+        then
+            print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
+            zle reset-prompt
+    else
+        zle accept-line
+            fi  
 }
 zle -N magic-enter
 bindkey "^M" magic-enter
