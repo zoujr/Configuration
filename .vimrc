@@ -24,6 +24,8 @@ set expandtab
 " set noexpandtab
 set mouse=a
 
+set ignorecase
+
 "Copy and paste between terminala
 set clipboard=unnamed
 
