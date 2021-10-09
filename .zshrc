@@ -166,3 +166,6 @@ magic-enter () {
 }
 zle -N magic-enter
 bindkey "^M" magic-enter
+
+alias v="vim"
+alias show="readlink -f"
