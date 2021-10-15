@@ -26,6 +26,9 @@ set mouse=a
 
 set ignorecase
 
+au BufWinLeave ?* silent mkview
+au BufWinEnter ?* silent loadview
+
 "Copy and paste between terminala
 set clipboard=unnamed
 
