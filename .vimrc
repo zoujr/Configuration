@@ -1,6 +1,8 @@
 let mapleader=","
 
 set nu
+set run
+set shortmess-=S
 
 set shortmess=atI
 
