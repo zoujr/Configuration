@@ -17,7 +17,8 @@ set autoindent
 set hlsearch
 set incsearch
 hi Search ctermbg=LightYellow
-hi Search ctermfg=Red
+hi Search ctermfg=Black
+hi comment ctermfg=6
 
 set tabstop=4
 set shiftwidth=4
