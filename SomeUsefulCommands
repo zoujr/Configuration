@@ -1,0 +1,4 @@
+du -h --max-depth=1
+
+# vim
+set et! # vim关闭用空格替代tag
