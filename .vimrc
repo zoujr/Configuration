@@ -36,5 +36,9 @@ au BufWinEnter ?* silent loadview
 "Copy and paste between terminala
 set clipboard=unnamed
 
+if has("autocmd")  
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif  
+endif  
+
 inoremap jj <esc>
 inoremap jk <esc>
