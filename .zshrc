@@ -6,12 +6,23 @@ export PATH=/home/zjr/.cargo/bin:$PATH
 export ZSH="/home/zjr/.oh-my-zsh"
 export DISPLAY=:0
 
+fpath+=($HOME/.oh-my-zsh/custom/themes/pure)
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="ys"
 # ZSH_THEME="agnoster"
+
+autoload -U promptinit; promptinit
+
+PURE_CMD_MAX_EXEC_TIME=5
+PURE_PROMPT_SYMBOL=">"
+zstyle ':prompt:pure:path' color cyan
+zstyle ':prompt:pure:prompt:success' color green
+
+prompt pure
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -73,7 +84,7 @@ ZSH_THEME="ys"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-    z
+    	z
 	zsh-syntax-highlighting
         zsh-autosuggestions
 
@@ -167,13 +178,20 @@ magic-enter () {
 zle -N magic-enter
 bindkey "^M" magic-enter
 
-# Search backwards and forwards with a pattern
-bindkey -M vicmd '/' history-incremental-pattern-search-backward
-bindkey -M vicmd '?' history-incremental-pattern-search-forward
+bindkey '^\' autosuggest-accept
 
-# set up for insert mode too
-bindkey -M viins '^R' history-incremental-pattern-search-backward
-bindkey -M viins '^F' history-incremental-pattern-search-forward
+# Search backwards and forwards with a pattern
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^F' history-incremental-pattern-search-forward
+
+# Home
+bindkey '\e[1~' beginning-of-line
+# End
+bindkey '\e[4~' end-of-line
 
 alias v="vim"
 alias show="readlink -f"
+alias l="ls -la"
+alias resource="source ~/.zshrc"
+alias h="history"
+alias vf="vim \$(fzf)"
