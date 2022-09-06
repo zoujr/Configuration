@@ -42,3 +42,8 @@ endif
 
 inoremap jj <esc>
 inoremap jk <esc>
+
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
+nnoremap <Leader>b :ls<CR>:b<Space>
+nnoremap <Leader>r :bro ol<CR>
