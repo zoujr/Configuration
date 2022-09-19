@@ -6,3 +6,5 @@ set et! # vim关闭用空格替代tag
 vim "+set path+=./** | <filename>"
 
 preprompt_parts+=('%F{${prompt_pure_colors[path]}}%(9~|.../%8~|%~)%f')
+
+vim -c "set path+=**" -c"find <filename>"
