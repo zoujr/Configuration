@@ -28,6 +28,8 @@ set expandtab
 " set noexpandtab
 set mouse=a
 
+set cursorline
+
 set ignorecase
 
 au BufWinLeave ?* silent mkview
