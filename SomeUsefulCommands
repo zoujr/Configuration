@@ -12,3 +12,5 @@ vim -c "set path+=**" -c"find <filename>"
 cd $(z | fzf | awk '{ print $2 }')
 
 ps -eo pid,etime,cmd | grep <command> | grep -v grep
+
+p4 changes -m1 ...#have
